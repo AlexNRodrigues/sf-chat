@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+
+            {{ form_start(registrationForm) }}
+    
+                {{ form_errors(registrationForm) }}
+
+                <div class="sm:col-span-3">
+                    {{ form_label(registrationForm.name, null, {'label_attr': {'class': 'block text-sm font-semibold leading-6 text-gray-900'}}) }}
+                    <div class="mt-2">
+                         {{ form_widget(registrationForm.name, {'attr': {'class': 'block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6'}}) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_label(registrationForm.email, null, {'label_attr': {'class': 'text-sm font-semibold leading-6 text-gray-900'}}) }}
+                    <div class="mt-2">
+                        {{ form_widget(registrationForm.email, {'attr': {'class': 'block w-full rounded-md border-0 px-2 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6'}}) }}
+                    </div>
+                </div>
+
+                <div>
+                    {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'text-sm font-semibold leading-6 text-gray-900'}}) }}
+                    <div class="mt-2">
+                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'block w-full rounded-md border-0 px-2 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  sm:text-sm sm:leading-6'}}) }}
+                    </div>
+                </div>
+
+                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+        
+                    
+                </div>
+                <div class="relative flex gap-x-3">
+                    <div class="flex h-6 items-center">
+                        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'}}) }}
+                    </div>
+                    <div class="text-sm leading-6">
+                        {{ form_label(registrationForm.agreeTerms, null, {'label_attr': {'class': 'font-semibold text-gray-900'}}) }}
+                    </div>
+                </div>
+
+                <button type="submit" class="flex w-full justify-center rounded-md bg-gray-950 px-4 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-900">Register</button>
+
+            {{ form_end(registrationForm) }}
+
+    
+        </div>
+    </div>
+{% endblock %}
