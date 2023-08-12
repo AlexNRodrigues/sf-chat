@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChatController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="h-screen w-full flex justify-center items-center bg-gray-200">
+	
+		<div class="w-[1240px] h-[680px] bg-gray-50 border rounded">
+		
+			<div class="flex flex-row divide-x h-full w-full border-right">
+
+				<aside class="flex flex-col bg-gray-50">
+
+					<div class="px-4 py-6 border-b">
+						<h2 class="font-semibold text-lg text-slate-900">
+							Active Conversations
+							 <span
+								class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-slate-800 ms-4">
+								2	
+							</span>
+						</h2>
+					</div>
+
+					<div class="flex flex-col items-center px-6 mt-6">
+
+						<div>
+							<input type="text" class="border px-3.5 py-2 bg-slate-100 rounded-lg" placeholder="Search...">
+						</div>
+
+						<ul class="mt-6 gap w-full flex flex-col gap-2">
+							<li class="">
+								<div class="flex flex-row gap-2 px-4 py-3 bg-slate-100 rounded hover:border">
+									
+									<img src="https://placehold.co/44x44" alt="..." class="rounded-md">
+									<div class="flex flex-col">
+										<h5 class="text-sm font-semibold antialiased">Ciclano da silva</h5>
+										<span class="text-xs font-normal text-slate-500">Lorem ipsum dolor sit</span>
+									</div>
+								</div>
+							</li>
+						
+							<li class="">
+								<div class="flex flex-row gap-2 px-4 py-3 bg-white rounded hover:border">
+									
+									<img src="https://placehold.co/44x44" alt="..." class="rounded-md">
+									<div class="flex flex-col">
+										<h5 class="text-sm font-semibold antialiased">Ciclano da silva</h5>
+										<span class="text-xs font-normal text-slate-500">Lorem ipsum dolor sit</span>
+									</div>
+								</div>
+							</li>
+	
+						</ul>
+
+					</div>
+				</aside>
+
+				<section class="w-full flex flex-col justify-between">
+
+					<div class="flex flex-col h-full">
+					
+						<div class="flex flex-row justify-between px-4 py-4 border-b">
+							<div class="flex flex-row justify-center items-center gap-2">
+								<img src="https://placehold.co/44x44" alt="..." class="rounded-md">
+								<div class="flex flex-col">
+									<h4 class="text-base font-semibold antialiased">Ciclano da silva</h4>
+								</div>
+							</div>
+							<div>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M2 10C3.10457 10 4 9.10457 4 8C4 6.89543 3.10457 6 2 6C0.89543 6 0 6.89543 0 8C0 9.10457 0.89543 10 2 10Z" fill="#64748B"/>
+									<path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" fill="#64748B"/>
+									<path d="M14 10C15.1046 10 16 9.10457 16 8C16 6.89543 15.1046 6 14 6C12.8954 6 12 6.89543 12 8C12 9.10457 12.8954 10 14 10Z" fill="#64748B"/>
+								</svg>
+							</div>
+						</div>
+
+						<div class="flex flex-col items-center px-6 mt-6 h-full">
+							<div id="messages" {{ turbo_stream_listen('chat') }} class="flex flex-col gap-4 w-full">
+								{#
+									The messages will be displayed here.
+									"turbo_stream_listen()" automatically registers a Stimulus controller that subscribes to the "chat" topic as managed by the transport.
+									All connected users will receive the new messages!
+								#}
+							</div>
+						</div>
+					</div>
+
+					<div class="w-full border-t bg-gray-100">
+						<turbo-frame id="message_form">
+							
+							{{ form_start(form) }}
+								<div class="flex flex-row flex-shrink px-8 py-5 gap-4">
+									{{ form_widget(form.chat_id,  {'attr': {'value': 'foo'}}) }}
+									{{ form_widget(form.message, {'attr': {'class': 'rounded border w-full px-4'} }) }}
+									
+									<button class="bg-zinc-700 rounded px-3.5 py-3.5">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+										</svg>
+									</button>
+								</div>	
+							{{ form_end(form) }}
+							
+						</turbo-frame>
+					</div>
+
+				</section>				
+
+			</div>
+	
+		</div>	
+
+	</div>
+
+{% endblock %}
