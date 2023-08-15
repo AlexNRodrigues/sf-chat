@@ -10,8 +10,13 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $this->loadUsers($manager);
+    }
+
+    private function loadUsers(ObjectManager $manager): void
+    {
         $adm = new User();
-        $adm->setName('admin')
+        $adm->setUsername('admin')
             ->setEmail('admin@sf.chat.com')
             ->setPlainPassword('password')
             ->setRoles(['ROLE_ADMIN','ROLE_USER']);
@@ -19,7 +24,7 @@ class AppFixtures extends Fixture
 
         for ($i=0; $i < 5; $i++) { 
             $user = new User();
-            $user->setName('user'.$i)
+            $user->setUsername('user'.$i)
                 ->setEmail('email'.$i.'@email.com')
                 ->setPlainPassword('password')
                 ->setRoles(['ROLE_USER']);
@@ -27,7 +32,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        
         $manager->flush();
     }
 }
